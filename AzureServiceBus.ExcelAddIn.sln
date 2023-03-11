@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureServiceBus.ExcelAddIn", "src\AzureServiceBus.ExcelAddIn\AzureServiceBus.ExcelAddIn.csproj", "{9E9FAC3F-9612-4593-A567-8CB635B94E3E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E9FAC3F-9612-4593-A567-8CB635B94E3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E9FAC3F-9612-4593-A567-8CB635B94E3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E9FAC3F-9612-4593-A567-8CB635B94E3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E9FAC3F-9612-4593-A567-8CB635B94E3E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21072666-78A1-4CFD-AE1A-C9580470EFD9}
+	EndGlobalSection
+EndGlobal
