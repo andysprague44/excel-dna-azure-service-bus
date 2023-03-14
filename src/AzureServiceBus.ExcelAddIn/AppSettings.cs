@@ -8,6 +8,8 @@ namespace AzureServiceBus.ExcelAddIn
 {
 	internal class AppSettings
 	{
-		public string Version { get; set; }
+		public string Version { get; set; } = "0.1";
+		public string? MQPrefix { get; set; }
+		public TimeSpan? MaxTimeout { get; set; }
 	}
 }

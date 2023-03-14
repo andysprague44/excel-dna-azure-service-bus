@@ -1,17 +1,25 @@
-﻿using ExcelDna.Integration;
+﻿using System.Threading.Tasks;
+using Azure.Messaging.ServiceBus;
+using ExcelDna.Integration;
+using ExcelDna.Registration.Utils;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AzureServiceBus.ExcelAddIn;
 
 public static class MyFunctions
 {
-    [ExcelFunction(Description = "My first .NET function")]
-    public static string HelloDna(string name)
+    [ExcelFunction(Description = "Add 2 numbers together, fancy!")]
+    public static object AddNumbers(double x, double y)
     {
-		//To prove we can get to the controller
-		var controller = ContainerOperations.Container.GetRequiredService<ExcelController>();
-		controller.DoSomething();
+		return AsyncTaskUtil.RunTask(
+			nameof(ExcelController.AddNumbers), 
+			new object[] { x, y },
+			async () => await CallAzureServiceBusAsync(x, y));
+    }
 
-        return "Hello " + name;
+    private static async Task<double> CallAzureServiceBusAsync(double x, double y)
+    {
+	    var controller = ContainerOperations.Container.GetRequiredService<ExcelController>();
+	    return await controller.AddNumbers(x, y);
     }
 }

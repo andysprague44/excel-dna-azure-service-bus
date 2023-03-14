@@ -1,4 +1,5 @@
 ﻿using System;
+using Azure.Messaging.ServiceBus;
 using ExcelDna.Integration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +15,7 @@ internal static class ContainerOperations
 	private static readonly Lazy<IServiceProvider> ContainerSingleton = new(() => CreateContainer());
 	public static IServiceProvider Container => ContainerSingleton.Value;
 
-	//The DI registrsations
+	//The DI registrations
 	internal static IServiceProvider CreateContainer(string? basePath = null)
 	{
 		var container = new ServiceCollection();
@@ -26,20 +27,28 @@ internal static class ContainerOperations
 			.SetBasePath(basePath)
 			.AddJsonFile("appsettings.json")
 #if DEBUG
-			.AddJsonFile("appsettings.local.json", true)
+			.AddJsonFile("appsettings.Development.json", true)
 #endif
 			.Build();
-
+		
+		//Settings
 		var settings = configuration.GetSection("AppSettings").Get<AppSettings>();
-		if (settings == null)
-			throw new Exception("No appsettings section found called AppSettings");
-
+		if (settings == null) throw new Exception("No configuration section found called AppSettings");
 		container.AddSingleton(_ => settings);
+		
+		//Logging
 		container.AddSingleton(_ => ConfigureLogging(configuration));
 		container.AddSingleton(sp => sp.GetRequiredService<ILoggerFactory>().CreateLogger("AzureServiceBus.ExcelAddIn"));
 		
+		//Controller
 		container.AddSingleton<ExcelController>();
 
+		//Service Bus
+		container.AddSingleton<ITaskProcessor>(sp => new AzureServiceBusClient(
+			configuration.GetConnectionString("AzureServiceBusConnectionString"),
+			settings,
+			sp.GetRequiredService<Microsoft.Extensions.Logging.ILogger>()));
+		
 		return container.BuildServiceProvider();
 	}
 
@@ -48,7 +57,7 @@ internal static class ContainerOperations
 		var config = configuration.GetSection("PrespaExcelAddIn");
 		var aiInstrumentationKey = config["ApplicationInsightsInstrumentationKey"] ?? "ApplicationInsightsInstrumentationKey";
 		var appVersion = config["EnvironmentVersion"] ?? "Unknown Version";
-		var serilog = new Serilog.LoggerConfiguration()
+		var serilog = new LoggerConfiguration()
 			.ReadFrom.Configuration(config)
 			.Enrich.WithProperty("AppName", "Climate.Prespa.ExcelAddIn")
 			.Enrich.WithProperty("AppVersion", appVersion)
