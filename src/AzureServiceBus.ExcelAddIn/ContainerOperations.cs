@@ -54,12 +54,11 @@ internal static class ContainerOperations
 
 	private static ILoggerFactory ConfigureLogging(IConfiguration configuration)
 	{
-		var config = configuration.GetSection("PrespaExcelAddIn");
-		var aiInstrumentationKey = config["ApplicationInsightsInstrumentationKey"] ?? "ApplicationInsightsInstrumentationKey";
-		var appVersion = config["EnvironmentVersion"] ?? "Unknown Version";
+		var config = configuration.GetSection("AppSettings");
+		var appVersion = config["Version"] ?? "Unknown Version";
 		var serilog = new LoggerConfiguration()
 			.ReadFrom.Configuration(config)
-			.Enrich.WithProperty("AppName", "Climate.Prespa.ExcelAddIn")
+			.Enrich.WithProperty("AppName", "AzureServiceBus.ExcelAddIn")
 			.Enrich.WithProperty("AppVersion", appVersion)
 			.CreateLogger();
 

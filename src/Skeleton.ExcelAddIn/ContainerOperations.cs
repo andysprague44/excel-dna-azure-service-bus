@@ -14,7 +14,7 @@ internal static class ContainerOperations
 	private static readonly Lazy<IServiceProvider> ContainerSingleton = new(() => CreateContainer());
 	public static IServiceProvider Container => ContainerSingleton.Value;
 
-	//The DI registrsations
+	//The DI registrations
 	internal static IServiceProvider CreateContainer(string? basePath = null)
 	{
 		var container = new ServiceCollection();
@@ -45,12 +45,11 @@ internal static class ContainerOperations
 
 	private static ILoggerFactory ConfigureLogging(IConfiguration configuration)
 	{
-		var config = configuration.GetSection("PrespaExcelAddIn");
-		var aiInstrumentationKey = config["ApplicationInsightsInstrumentationKey"] ?? "ApplicationInsightsInstrumentationKey";
-		var appVersion = config["EnvironmentVersion"] ?? "Unknown Version";
+		var config = configuration.GetSection("AppSettings");
+		var appVersion = config["Version"] ?? "Unknown Version";
 		var serilog = new Serilog.LoggerConfiguration()
 			.ReadFrom.Configuration(config)
-			.Enrich.WithProperty("AppName", "Climate.Prespa.ExcelAddIn")
+			.Enrich.WithProperty("AppName", "Skeleton.ExcelAddIn")
 			.Enrich.WithProperty("AppVersion", appVersion)
 			.CreateLogger();
 
