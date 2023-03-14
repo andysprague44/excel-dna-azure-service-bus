@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureServiceBus.ExcelAddIn", "src\AzureServiceBus.ExcelAddIn\AzureServiceBus.ExcelAddIn.csproj", "{9E9FAC3F-9612-4593-A567-8CB635B94E3E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skeleton.ExcelAddIn", "src\Skeleton.ExcelAddIn\Skeleton.ExcelAddIn.csproj", "{462C5A54-1303-4070-9405-19C7C00C4A06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9E9FAC3F-9612-4593-A567-8CB635B94E3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E9FAC3F-9612-4593-A567-8CB635B94E3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E9FAC3F-9612-4593-A567-8CB635B94E3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{462C5A54-1303-4070-9405-19C7C00C4A06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{462C5A54-1303-4070-9405-19C7C00C4A06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{462C5A54-1303-4070-9405-19C7C00C4A06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{462C5A54-1303-4070-9405-19C7C00C4A06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

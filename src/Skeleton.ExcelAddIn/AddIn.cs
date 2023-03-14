@@ -5,7 +5,7 @@ using ExcelDna.Integration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace AzureServiceBus.ExcelAddIn;
+namespace Skeleton.ExcelAddIn;
 
 // ReSharper disable once UnusedType.Global
 public class AddIn : IExcelAddIn

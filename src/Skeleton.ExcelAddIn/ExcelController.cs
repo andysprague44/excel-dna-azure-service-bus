@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Logging;
 
-namespace AzureServiceBus.ExcelAddIn;
+namespace Skeleton.ExcelAddIn;
 
 internal class ExcelController
 {

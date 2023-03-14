@@ -1,7 +1,7 @@
 ﻿using ExcelDna.Integration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AzureServiceBus.ExcelAddIn;
+namespace Skeleton.ExcelAddIn;
 
 public static class MyFunctions
 {

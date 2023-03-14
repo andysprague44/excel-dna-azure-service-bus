@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Extensions.Logging;
 
-namespace AzureServiceBus.ExcelAddIn;
+namespace Skeleton.ExcelAddIn;
 
 internal static class ContainerOperations
 {
